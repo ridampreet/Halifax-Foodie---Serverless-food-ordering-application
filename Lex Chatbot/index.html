@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <style>
+    .centered {
+      position: absolute;
+      width: 1000px;
+      height: 100px;
+      left: 50%;
+      top: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+    }
+    .h1message {
+      position: absolute;
+      width: 1000px;
+      height: 100px;
+      left: 35%;
+      top: 5%;
+      margin-left: -40px;
+      margin-top: 5px;
+    }
+  </style>
+  <body>
+    <h1 class="h1message">
+      Hello, Welcome to the chatbot type message to interact
+    </h1>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.41.0.min.js"></script>
+    <div id="chatModule" class="centered">
+      <div id="chatspace"><br /></div>
+      <form onsubmit="myFunction()">
+        <input id="message" type="text" name="fname" />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+
+    <script>
+      function myFunction() {
+        event.preventDefault();
+        var message = document.getElementById("message").value;
+
+        document
+          .getElementById("chatspace")
+          .appendChild(
+            document
+              .createElement("p")
+              .appendChild(document.createTextNode("User :  " + message))
+          );
+        var nextLine1 = document.createElement("br");
+        document.getElementById("chatspace").appendChild(nextLine1);
+
+        params.inputText = message;
+        var lexruntime = new AWS.LexRuntime();
+        lexruntime.postText(params, function (err, data) {
+          if (err) {
+            console.log(err, err.stack);
+          }
+          if (data) {
+            var node3;
+            if (data.message.includes("The issue of your complaint is")) {
+              var node3 = document.createElement("a");
+
+              node3.appendChild(document.createTextNode("Click here"));
+              node3.href = "https://front-ion5wdstsq-uc.a.run.app/user";
+
+              var nextLine = document.createElement("br");
+              document.getElementById("chatspace").appendChild(nextLine);
+            }
+            var node2 = document.createElement("p");
+            document
+              .getElementById("chatspace")
+              .appendChild(
+                node2.appendChild(
+                  document.createTextNode("Bot : " + data.message)
+                )
+              );
+            if (node3 != null) {
+              document.getElementById("chatspace").appendChild(node3);
+            }
+            var nextLine = document.createElement("br");
+            document.getElementById("chatspace").appendChild(nextLine);
+            console.log(data);
+          }
+        });
+      }
+      AWS.config.region = "us-east-1"; // Region
+      AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: "us-east-1:c5474e5f-f533-43a9-844d-7b49ae56e0ab"
+      });
+      var params = {
+        botAlias: "$LATEST" /* required */,
+
+        botName: "HalfixFoodie",
+        userId: "new" /* required */,
+
+        inputText: "Hi"
+      };
+    </script>
+  </body>
+</html>
+
+<!-- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityCredentials.html -->

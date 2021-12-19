@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "predeploy": [],
+    "source": "functions"
+  },
+  "emulators": {
+    "functions": {
+      "port": 5008
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
+}

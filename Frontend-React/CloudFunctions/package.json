@@ -1,0 +1,17 @@
+{
+    "name": "recipeupload",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@google-cloud/aiplatform": "^1.9.1",
+      "@google-cloud/datastore": "^6.4.6",
+      "@google-cloud/storage": "^5.10.0",
+      "busboy": "^0.3.1"
+    }
+  }

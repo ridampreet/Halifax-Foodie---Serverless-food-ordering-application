@@ -1,0 +1,17 @@
+{
+  "name": "rds",
+  "version": "1.0.0",
+  "description": "For MFA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Venkata Saikiran",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.953.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mysql": "^2.18.1"
+  }
+}
